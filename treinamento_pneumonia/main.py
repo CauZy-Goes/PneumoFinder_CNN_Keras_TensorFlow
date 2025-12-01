@@ -12,9 +12,9 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Reduz logs do TensorFlow
 tf.random.set_seed(42)  # Reprodutibilidade
 
 # Caminhos do dataset
-train_dir = "dataset\\train"
-val_dir = "dataset\\val"
-test_dir = "dataset\\test"
+train_dir = "dataset3\\train"
+val_dir = "dataset3\\val"
+test_dir = "dataset3\\test"
 
 # Hiperparâmetros
 IMG_SIZE = (224, 224)
