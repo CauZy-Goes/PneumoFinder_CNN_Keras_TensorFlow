@@ -12,15 +12,15 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Reduz logs do TensorFlow
 tf.random.set_seed(42)  # Reprodutibilidade
 
 # Caminhos do dataset
-train_dir = "dataset3\\train"
-val_dir = "dataset3\\val"
-test_dir = "dataset3\\test"
+train_dir = "dataset1\\train"
+val_dir = "dataset1\\val"
+test_dir = "dataset1\\test"
 
 # Hiperparâmetros
 IMG_SIZE = (224, 224)
 BATCH_SIZE = 32
 EPOCHS_INITIAL = 30
-EPOCHS_FINE_TUNE = 20
+EPOCHS_FINE_TUNE = 40
 BEST_MODEL_PATH = 'best_model.keras'
 
 print("INICIANDO PIPELINE DE TREINAMENTO OTIMIZADO\n")
@@ -47,13 +47,18 @@ print("4. Iniciando fine-tuning...")
 base_model = model.layers[0]  # ResNet50 está dentro do Sequential
 base_model.trainable = True
 
-# Congela apenas as primeiras camadas (aprendem features básicas)
-for layer in base_model.layers[:100]:
+# # Congela apenas as primeiras camadas (aprendem features básicas)
+# for layer in base_model.layers[:100]:
+#     layer.trainable = False
+
+for layer in base_model.layers[:50]:
     layer.trainable = False
+
 
 # Recompila com LR muito baixo
 model.compile(
-    optimizer=Adam(learning_rate=1e-5),
+    #Adam(1e-5)
+    optimizer=Adam(learning_rate=1e-6),
     loss='binary_crossentropy',
     metrics=['accuracy']
 )

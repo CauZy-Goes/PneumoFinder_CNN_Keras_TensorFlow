@@ -31,10 +31,14 @@ def criar_modelo(input_shape=(224, 224, 3)):
         
         # Camada totalmente conectada: Mais neurônios (256) para aprender relações complexas das features extraídas
         # Função de ativação ReLU para não-linearidade
-        Dense(256, activation='relu'),
-        
-        # Dropout: Desativa 50% dos neurônios durante o treinamento para prevenir overfitting e melhorar generalização
+
+        Dense(1024, activation='relu'),
         Dropout(0.5),
+
+        # Dense(256, activation='relu'),
+        
+        # # Dropout: Desativa 50% dos neurônios durante o treinamento para prevenir overfitting e melhorar generalização
+        # Dropout(0.5),
         
         # Camada de saída: 1 neurônio para classificação binária (NORMAL ou PNEUMONIA)
         # Função de ativação Sigmoid para probabilidades entre 0 e 1
